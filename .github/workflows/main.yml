@@ -1,0 +1,28 @@
+# This is a workflow to build and deploy the rust project to Github Pages 
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push request events but only for the master branch
+  push:
+    branches: [ master ]
+
+jobs:
+  check:
+    name: first book project
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v2
+        - uses: actions-rs/toolchain@v1
+          with:
+            toolchain: stable
+        - run: cargo install mdbook
+        - run: mdbook build
+        - name: first-book project
+          if: success()
+          uses: crazy-max/ghaction-github-pages@v2
+          with:
+            target_branch: master
+            build_dir: book
+            keep_history: true
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
