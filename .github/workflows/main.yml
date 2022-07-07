@@ -7,33 +7,22 @@ on:
 
 jobs:
   check:
-    name: rust project
+    name: first book project
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v2
         - uses: actions-rs/toolchain@v1
           with:
             toolchain: stable
-        - name: Checkout rustviz_tut repo on current branch 
-          uses: actions/checkout@v2
-          with:
-            path: rustviz_tut
-        - name: Checkout rustviz  repo on current branch
-          uses: actions/checkout@v2
-          with:
-            repository: rustviz/rustviz
-            path: rustviz
-#         - run: cd rustviz_tut
-#         - run: sh copy_assets.sh
-        - run: mv githubLogging.js logging.js
         - run: cargo install mdbook
         - run: mdbook build
-        - name: rust project
+        - name: first-book project
           if: success()
           uses: crazy-max/ghaction-github-pages@v2
           with:
-            target_branch: gh-pages
+            target_branch: main
             build_dir: book
             keep_history: true
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
