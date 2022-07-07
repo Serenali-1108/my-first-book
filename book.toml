@@ -1,0 +1,6 @@
+[book]
+authors = ["yixiaoli"]
+language = "en"
+multilingual = false
+src = "src"
+title = "my-first-book"
