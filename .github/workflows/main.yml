@@ -15,12 +15,7 @@ jobs:
           with:
             toolchain: stable
         - run: cargo install mdbook
-        - name: Install mdbook-quiz
-          run: cargo install --path . --debug --locked
-        - name: Build example mdbook
-          run: mdbook build
-#           working-directory: example
-#         - run: mdbook build
+        - run: mdbook build
         - name: first-book project
           if: success()
           uses: crazy-max/ghaction-github-pages@v2
@@ -30,4 +25,3 @@ jobs:
             keep_history: true
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
